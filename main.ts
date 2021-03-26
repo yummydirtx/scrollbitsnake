@@ -1,5 +1,5 @@
 // cooper
-let length = 2
+let length = 1
 let direction = 0
 let snakeLocation = [0, 0]
 function drawSnake(snakeLocation: number[]) {
@@ -9,4 +9,17 @@ function drawSnake(snakeLocation: number[]) {
     scrollbit.show()
 }
 
+function moveSnake(snakeLocation: number[], direction: number, length: number): number[] {
+    if (direction == 0) {
+        snakeLocation.push(snakeLocation[snakeLocation.length - 2] + 1)
+        snakeLocation.push(snakeLocation[snakeLocation.length - 2])
+    }
+    
+    while (snakeLocation.length / 2 > length) {
+        snakeLocation = snakeLocation.slice(2)
+    }
+    return snakeLocation
+}
+
+snakeLocation = moveSnake(snakeLocation, direction, length)
 drawSnake(snakeLocation)

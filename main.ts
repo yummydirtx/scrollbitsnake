@@ -3,6 +3,7 @@ let length = 1
 let direction = 0
 let snakeLocation = [0, 0]
 function drawSnake(snakeLocation: number[]) {
+    scrollbit.clear()
     for (let x = 0; x < snakeLocation.length / 2; x++) {
         scrollbit.setPixel(snakeLocation[x * 2], snakeLocation[x * 2 + 1])
     }
@@ -21,5 +22,8 @@ function moveSnake(snakeLocation: number[], direction: number, length: number): 
     return snakeLocation
 }
 
-snakeLocation = moveSnake(snakeLocation, direction, length)
-drawSnake(snakeLocation)
+while (true) {
+    drawSnake(snakeLocation)
+    snakeLocation = moveSnake(snakeLocation, direction, length)
+    basic.pause(200)
+}

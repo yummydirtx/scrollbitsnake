@@ -8,6 +8,7 @@ snakeLocation = [
 ]
 
 def drawSnake(snakeLocation):
+    scrollbit.clear()
     for x in range(len(snakeLocation)/2):
         scrollbit.set_pixel(snakeLocation[x*2], snakeLocation[(x*2)+1])
     scrollbit.show()
@@ -20,5 +21,7 @@ def moveSnake(snakeLocation, direction, length):
         snakeLocation = snakeLocation[2:]
     return snakeLocation
 
-snakeLocation = moveSnake(snakeLocation, direction, length)
-drawSnake(snakeLocation)
+while True:
+    drawSnake(snakeLocation)
+    snakeLocation = moveSnake(snakeLocation, direction, length)
+    basic.pause(200)

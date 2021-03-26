@@ -1,3 +1,4 @@
+// cooper
 let length = 2
 let direction = 0
 let snakeLocation = [0, 0]

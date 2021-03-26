@@ -1,6 +1,32 @@
-// cooper
-let length = 1
+input.onButtonPressed(Button.A, function on_button_pressed_a() {
+    
+    if (direction == 0) {
+        direction = 3
+    } else if (direction == 1) {
+        direction = 0
+    } else if (direction == 2) {
+        direction = 1
+    } else if (direction == 3) {
+        direction = 2
+    }
+    
+})
+input.onButtonPressed(Button.B, function on_button_pressed_b() {
+    
+    if (direction == 0) {
+        direction = 1
+    } else if (direction == 1) {
+        direction = 2
+    } else if (direction == 2) {
+        direction = 3
+    } else if (direction == 3) {
+        direction = 0
+    }
+    
+})
 let direction = 0
+//  cooper
+let length = 1
 let snakeLocation = [0, 0]
 function drawSnake(snakeLocation: number[]) {
     //  clear the screen before drawing
@@ -19,6 +45,15 @@ function moveSnake(snakeLocation: number[], direction: number, length: number): 
     if (direction == 0) {
         snakeLocation.push(snakeLocation[snakeLocation.length - 2] + 1)
         snakeLocation.push(snakeLocation[snakeLocation.length - 2])
+    } else if (direction == 1) {
+        snakeLocation.push(snakeLocation[snakeLocation.length - 2])
+        snakeLocation.push(snakeLocation[snakeLocation.length - 2] + 1)
+    } else if (direction == 2) {
+        snakeLocation.push(snakeLocation[snakeLocation.length - 2] - 1)
+        snakeLocation.push(snakeLocation[snakeLocation.length - 2])
+    } else if (direction == 3) {
+        snakeLocation.push(snakeLocation[snakeLocation.length - 2])
+        snakeLocation.push(snakeLocation[snakeLocation.length - 2] - 1)
     }
     
     while (snakeLocation.length / 2 > length) {

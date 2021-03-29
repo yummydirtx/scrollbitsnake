@@ -52,10 +52,19 @@ def moveSnake(snakeLocation: List[number], direction: number, length: number):
         # remove extra snake
         snakeLocation = snakeLocation.slice(2)
     return snakeLocation
-snakeLocation = moveSnake(snakeLocation, direction, length)
+def food():
+    global length
+    global snakeLocation
+    if snakeLocation[len(snakeLocation) - 2] == 1 and snakeLocation[len(snakeLocation) - 1]:
+        length = length + 1
+    return length
+
+
+drawSnake(snakeLocation)
 while True:
     snakeLocation = moveSnake(snakeLocation, direction, length)
     drawSnake(snakeLocation)
+    food()
     for x in range(200):
         if ppFlag == False:
             if input.button_is_pressed(Button.A):

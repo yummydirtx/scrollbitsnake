@@ -66,10 +66,21 @@ function moveSnake(snakeLocation: number[], direction: number, length: number): 
     return snakeLocation
 }
 
-snakeLocation = moveSnake(snakeLocation, direction, length)
+function food() {
+    
+    
+    if (snakeLocation[0] == 1 && snakeLocation[1]) {
+        length = length + 1
+    }
+    
+    return length
+}
+
+drawSnake(snakeLocation)
 while (true) {
     snakeLocation = moveSnake(snakeLocation, direction, length)
     drawSnake(snakeLocation)
+    food()
     for (let x = 0; x < 200; x++) {
         if (ppFlag == false) {
             if (input.buttonIsPressed(Button.A)) {

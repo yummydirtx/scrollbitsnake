@@ -76,10 +76,10 @@ function food() {
     
     
     
-    scrollbit.setPixel(rand2, rand1, 100)
-    scrollbit.show()
     if (snakeLocation[lengthfunc - 2] == rand2 && snakeLocation[lengthfunc - 1] == rand1) {
-        length = length + .5
+        length = length + 1
+        rand1 = randint(0, 6)
+        rand2 = randint(0, 16)
     }
     
     return length
@@ -107,6 +107,8 @@ while (true) {
         direction = 0
         //  cooper
         length = 1
+        rand1 = 0
+        rand2 = 0
         snakeLocation = [0, 0]
     }
     
@@ -132,6 +134,8 @@ while (true) {
         direction = 0
         //  cooper
         length = 1
+        rand1 = 0
+        rand2 = 0
         snakeLocation = [0, 0]
     }
     

@@ -61,6 +61,8 @@ def checkDeath(snakeLocation, lengthfunc):
     death = False
     if snakeLocation[lengthfunc-1] > 6 or snakeLocation[lengthfunc-2] > 16:
         death = True
+    if snakeLocation[lengthfunc-1] < 0 or snakeLocation[lengthfunc-2] < 0:
+        death = True
     return death
 
 while True:

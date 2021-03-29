@@ -84,6 +84,10 @@ function checkDeath(snakeLocation: any, lengthfunc: number): boolean {
         death = true
     }
     
+    if (snakeLocation[lengthfunc - 1] < 0 || snakeLocation[lengthfunc - 2] < 0) {
+        death = true
+    }
+    
     return death
 }
 

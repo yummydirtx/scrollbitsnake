@@ -53,14 +53,14 @@ def moveSnake(snakeLocation: List[number], direction: number, length: number):
 def food():
     global length
     if snakeLocation[lengthfunc - 2] == 1 and snakeLocation[lengthfunc - 1] == 1:
-        length= length +.5
+        length= length + .5
     return length
 drawSnake(snakeLocation)
 while True:
+    food()
     lengthfunc = len(snakeLocation)
     snakeLocation = moveSnake(snakeLocation, direction, length)
     drawSnake(snakeLocation)
-    food()
     for x2 in range(200):
         if ppFlag == False:
             if input.button_is_pressed(Button.A):

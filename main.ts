@@ -78,10 +78,10 @@ function food() {
 
 drawSnake(snakeLocation)
 while (true) {
+    food()
     lengthfunc = snakeLocation.length
     snakeLocation = moveSnake(snakeLocation, direction, length)
     drawSnake(snakeLocation)
-    food()
     for (let x2 = 0; x2 < 200; x2++) {
         if (ppFlag == false) {
             if (input.buttonIsPressed(Button.A)) {

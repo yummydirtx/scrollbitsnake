@@ -55,7 +55,7 @@ def moveSnake(snakeLocation: List[number], direction: number, length: number):
 def food():
     global length
     global snakeLocation
-    if snakeLocation[len(snakeLocation) - 2] == 1 and snakeLocation[len(snakeLocation) - 1]:
+    if snakeLocation[len(snakeLocation) - 2] == 1 and snakeLocation[len(snakeLocation) - 1] == 1:
         length = length + 1
     return length
 

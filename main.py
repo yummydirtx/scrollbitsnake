@@ -8,7 +8,6 @@ def on_button_pressed_a():
         direction = 1
     elif direction == 3:
         direction = 2
-
 def on_button_pressed_b():
     global direction
     if direction == 0:
@@ -19,7 +18,6 @@ def on_button_pressed_b():
         direction = 3
     elif direction == 3:
         direction = 0
-
 ppFlag = False
 direction = 0
 # cooper
@@ -54,18 +52,16 @@ def moveSnake(snakeLocation: List[number], direction: number, length: number):
     return snakeLocation
 def food():
     global length
-    global snakeLocation
-    if snakeLocation[len(snakeLocation) - 2] == 1 and snakeLocation[len(snakeLocation) - 1] == 1:
-        length = length + 1
+    if snakeLocation[lengthfunc - 2] == 1 and snakeLocation[lengthfunc - 1] == 1:
+        length= length +.5
     return length
-
-
 drawSnake(snakeLocation)
 while True:
+    lengthfunc = len(snakeLocation)
     snakeLocation = moveSnake(snakeLocation, direction, length)
     drawSnake(snakeLocation)
     food()
-    for x in range(200):
+    for x2 in range(200):
         if ppFlag == False:
             if input.button_is_pressed(Button.A):
                 on_button_pressed_a()

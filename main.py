@@ -8,7 +8,6 @@ def on_button_pressed_a():
         direction = 1
     elif direction == 3:
         direction = 2
-input.on_button_pressed(Button.A, on_button_pressed_a)
 
 def on_button_pressed_b():
     global direction
@@ -20,8 +19,8 @@ def on_button_pressed_b():
         direction = 3
     elif direction == 3:
         direction = 0
-input.on_button_pressed(Button.B, on_button_pressed_b)
 
+ppFlag = False
 direction = 0
 # cooper
 length = 1
@@ -56,4 +55,13 @@ def moveSnake(snakeLocation: List[number], direction: number, length: number):
 while True:
     drawSnake(snakeLocation)
     snakeLocation = moveSnake(snakeLocation, direction, length)
-    basic.pause(200)
+    for x in range(200):
+        if ppFlag == False:
+            if input.button_is_pressed(Button.A):
+                on_button_pressed_a()
+                ppFlag = True
+            if input.button_is_pressed(Button.B):
+                on_button_pressed_b()
+                ppFlag = True
+        basic.pause(1)
+    ppFlag = False

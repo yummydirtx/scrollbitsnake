@@ -1,4 +1,4 @@
-input.onButtonPressed(Button.A, function on_button_pressed_a() {
+function on_button_pressed_a() {
     
     if (direction == 0) {
         direction = 3
@@ -10,8 +10,9 @@ input.onButtonPressed(Button.A, function on_button_pressed_a() {
         direction = 2
     }
     
-})
-input.onButtonPressed(Button.B, function on_button_pressed_b() {
+}
+
+function on_button_pressed_b() {
     
     if (direction == 0) {
         direction = 1
@@ -23,7 +24,9 @@ input.onButtonPressed(Button.B, function on_button_pressed_b() {
         direction = 0
     }
     
-})
+}
+
+let ppFlag = false
 let direction = 0
 //  cooper
 let length = 1
@@ -66,5 +69,21 @@ function moveSnake(snakeLocation: number[], direction: number, length: number): 
 while (true) {
     drawSnake(snakeLocation)
     snakeLocation = moveSnake(snakeLocation, direction, length)
-    basic.pause(200)
+    for (let x = 0; x < 200; x++) {
+        if (ppFlag == false) {
+            if (input.buttonIsPressed(Button.A)) {
+                on_button_pressed_a()
+                ppFlag = true
+            }
+            
+            if (input.buttonIsPressed(Button.B)) {
+                on_button_pressed_b()
+                ppFlag = true
+            }
+            
+        }
+        
+        basic.pause(1)
+    }
+    ppFlag = false
 }

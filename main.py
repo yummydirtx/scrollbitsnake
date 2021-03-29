@@ -25,6 +25,7 @@ direction = 0
 # cooper
 length = 1
 snakeLocation = [0, 0]
+
 def drawSnake(snakeLocation: List[number]):
     # clear the screen before drawing
     scrollbit.clear()
@@ -53,15 +54,17 @@ def moveSnake(snakeLocation: List[number], direction: number, length: number):
         snakeLocation = snakeLocation.slice(2)
     return snakeLocation
 def food():
+    global x
     global length
     global snakeLocation
-    if snakeLocation[len(snakeLocation) - 2] == 1 and snakeLocation[len(snakeLocation) - 1]:
+    if snakeLocation[x-2] == 1 and snakeLocation[x - 1] == 1:
         length = length + 1
     return length
 
 
 drawSnake(snakeLocation)
 while True:
+    x = len(snakeLocation)
     snakeLocation = moveSnake(snakeLocation, direction, length)
     drawSnake(snakeLocation)
     food()

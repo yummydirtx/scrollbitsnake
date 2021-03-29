@@ -1,3 +1,4 @@
+let x: number;
 function on_button_pressed_a() {
     
     if (direction == 0) {
@@ -69,7 +70,8 @@ function moveSnake(snakeLocation: number[], direction: number, length: number): 
 function food() {
     
     
-    if (snakeLocation[0] == 1 && snakeLocation[1]) {
+    
+    if (snakeLocation[x - 2] == 1 && snakeLocation[x - 1] == 1) {
         length = length + 1
     }
     
@@ -78,10 +80,11 @@ function food() {
 
 drawSnake(snakeLocation)
 while (true) {
+    x = snakeLocation.length
     snakeLocation = moveSnake(snakeLocation, direction, length)
     drawSnake(snakeLocation)
     food()
-    for (let x = 0; x < 200; x++) {
+    for (x = 0; x < 200; x++) {
         if (ppFlag == false) {
             if (input.buttonIsPressed(Button.A)) {
                 on_button_pressed_a()

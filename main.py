@@ -69,6 +69,11 @@ while True:
     food()
     lengthfunc = len(snakeLocation)
     snakeLocation = moveSnake(snakeLocation, direction, length)
+    if checkDeath(snakeLocation, lengthfunc):
+        direction = 0
+        # cooper
+        length = 1
+        snakeLocation = [0, 0]
     drawSnake(snakeLocation)
     for x2 in range(200):
         if ppFlag == False:
@@ -80,3 +85,8 @@ while True:
                 ppFlag = True
         basic.pause(1)
     ppFlag = False
+    if checkDeath(snakeLocation, lengthfunc):
+        direction = 0
+        # cooper
+        length = 1
+        snakeLocation = [0, 0]

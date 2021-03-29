@@ -23,7 +23,10 @@ direction = 0
 # cooper
 length = 1
 snakeLocation = [0, 0]
+rand1=0
+rand2=0
 def drawSnake(snakeLocation: List[number]):
+    global rand1, rand2
     # clear the screen before drawing
     scrollbit.clear()
     # repeat this for every pair of coordinates
@@ -31,6 +34,7 @@ def drawSnake(snakeLocation: List[number]):
         # if x is length divided by two it has to be multiplied again
         scrollbit.set_pixel(snakeLocation[x * 2], snakeLocation[x * 2 + 1],50)
     scrollbit.set_pixel(snakeLocation[len(snakeLocation)-2], snakeLocation[len(snakeLocation)-1] )
+    scrollbit.set_pixel(rand2, rand1)
     # show the world
     scrollbit.show()
 def moveSnake(snakeLocation: List[number], direction: number, length: number):
@@ -53,7 +57,11 @@ def moveSnake(snakeLocation: List[number], direction: number, length: number):
     return snakeLocation
 def food():
     global length
-    if snakeLocation[lengthfunc - 2] == 1 and snakeLocation[lengthfunc - 1] == 1:
+    global rand1
+    global rand2
+    scrollbit.set_pixel(rand2, rand1,100)
+    scrollbit.show()
+    if snakeLocation[lengthfunc - 2] == rand2 and snakeLocation[lengthfunc - 1] == rand1:
         length= length + .5
     return length
 drawSnake(snakeLocation)

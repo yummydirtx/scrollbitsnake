@@ -32,7 +32,10 @@ let direction = 0
 //  cooper
 let length = 1
 let snakeLocation = [0, 0]
+let rand1 = 0
+let rand2 = 0
 function drawSnake(snakeLocation: number[]) {
+    
     //  clear the screen before drawing
     scrollbit.clear()
     //  repeat this for every pair of coordinates
@@ -41,6 +44,7 @@ function drawSnake(snakeLocation: number[]) {
         scrollbit.setPixel(snakeLocation[x * 2], snakeLocation[x * 2 + 1], 50)
     }
     scrollbit.setPixel(snakeLocation[snakeLocation.length - 2], snakeLocation[snakeLocation.length - 1])
+    scrollbit.setPixel(rand2, rand1)
     //  show the world
     scrollbit.show()
 }
@@ -70,7 +74,11 @@ function moveSnake(snakeLocation: number[], direction: number, length: number): 
 
 function food() {
     
-    if (snakeLocation[lengthfunc - 2] == 1 && snakeLocation[lengthfunc - 1] == 1) {
+    
+    
+    scrollbit.setPixel(rand2, rand1, 100)
+    scrollbit.show()
+    if (snakeLocation[lengthfunc - 2] == rand2 && snakeLocation[lengthfunc - 1] == rand1) {
         length = length + .5
     }
     

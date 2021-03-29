@@ -38,8 +38,9 @@ function drawSnake(snakeLocation: number[]) {
     //  repeat this for every pair of coordinates
     for (let x = 0; x < snakeLocation.length / 2; x++) {
         //  if x is length divided by two it has to be multiplied again
-        scrollbit.setPixel(snakeLocation[x * 2], snakeLocation[x * 2 + 1])
+        scrollbit.setPixel(snakeLocation[x * 2], snakeLocation[x * 2 + 1], 50)
     }
+    scrollbit.setPixel(snakeLocation[snakeLocation.length - 2], snakeLocation[snakeLocation.length - 1])
     //  show the world
     scrollbit.show()
 }

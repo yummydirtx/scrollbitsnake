@@ -29,7 +29,8 @@ def drawSnake(snakeLocation: List[number]):
     # repeat this for every pair of coordinates
     for x in range(len(snakeLocation) / 2):
         # if x is length divided by two it has to be multiplied again
-        scrollbit.set_pixel(snakeLocation[x * 2], snakeLocation[x * 2 + 1])
+        scrollbit.set_pixel(snakeLocation[x * 2], snakeLocation[x * 2 + 1],50)
+    scrollbit.set_pixel(snakeLocation[len(snakeLocation)-2], snakeLocation[len(snakeLocation)-1] )
     # show the world
     scrollbit.show()
 def moveSnake(snakeLocation: List[number], direction: number, length: number):

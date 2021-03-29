@@ -56,6 +56,12 @@ def food():
         length= length + .5
     return length
 drawSnake(snakeLocation)
+def checkDeath(snakeLocation, lengthfunc):
+    death = False
+    if snakeLocation[lengthfunc-1] > 6 or snakeLocation[lengthfunc-2] > 16:
+        death = True
+    return death
+
 while True:
     food()
     lengthfunc = len(snakeLocation)

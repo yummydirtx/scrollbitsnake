@@ -77,6 +77,15 @@ function food() {
 }
 
 drawSnake(snakeLocation)
+function checkDeath(snakeLocation: any, lengthfunc: number): boolean {
+    let death = false
+    if (snakeLocation[lengthfunc - 1] > 6 || snakeLocation[lengthfunc - 2] > 16) {
+        death = true
+    }
+    
+    return death
+}
+
 while (true) {
     food()
     lengthfunc = snakeLocation.length

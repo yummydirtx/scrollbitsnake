@@ -65,11 +65,20 @@ def food():
         rand2 = randint(0,16)
     return length
 drawSnake(snakeLocation)
-def checkDeath(snakeLocation, lengthfunc):
-    death = False
-    if snakeLocation[lengthfunc-1] > 6 or snakeLocation[lengthfunc-2] > 16:
+def checkContact(snakeLocation: List[number]):
+    contact = False
+    frontX = snakeLocation[len(snakeLocation)-2]
+    frontY = snakeLocation[len(snakeLocation)-1]
+    for x in range((len(snakeLocation) / 2)-1):
+        if frontX == snakeLocation[x*2]:
+            if frontY == snakeLocation[(x*2)+1]:
+                contact = True
+    return contact
+def checkDeath(snakeLocation: List[number]):
+    death = checkContact(snakeLocation)
+    if snakeLocation[len(snakeLocation)-1] > 6 or snakeLocation[len(snakeLocation)-2] > 16:
         death = True
-    if snakeLocation[lengthfunc-1] < 0 or snakeLocation[lengthfunc-2] < 0:
+    if snakeLocation[len(snakeLocation)-1] < 0 or snakeLocation[len(snakeLocation)-2] < 0:
         death = True
     return death
 
@@ -77,7 +86,7 @@ while True:
     food()
     lengthfunc = len(snakeLocation)
     snakeLocation = moveSnake(snakeLocation, direction, length)
-    if checkDeath(snakeLocation, lengthfunc):
+    if checkDeath(snakeLocation):
         direction = 0
         # cooper
         length = 1

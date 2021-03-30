@@ -86,13 +86,29 @@ function food() {
 }
 
 drawSnake(snakeLocation)
-function checkDeath(snakeLocation: number[], lengthfunc: number): boolean {
-    let death = false
-    if (snakeLocation[lengthfunc - 1] > 6 || snakeLocation[lengthfunc - 2] > 16) {
+function checkContact(snakeLocation: number[]): boolean {
+    let contact = false
+    let frontX = snakeLocation[snakeLocation.length - 2]
+    let frontY = snakeLocation[snakeLocation.length - 1]
+    for (let x = 0; x < snakeLocation.length / 2 - 1; x++) {
+        if (frontX == snakeLocation[x * 2]) {
+            if (frontY == snakeLocation[x * 2 + 1]) {
+                contact = true
+            }
+            
+        }
+        
+    }
+    return contact
+}
+
+function checkDeath(snakeLocation: number[]): boolean {
+    let death = checkContact(snakeLocation)
+    if (snakeLocation[snakeLocation.length - 1] > 6 || snakeLocation[snakeLocation.length - 2] > 16) {
         death = true
     }
     
-    if (snakeLocation[lengthfunc - 1] < 0 || snakeLocation[lengthfunc - 2] < 0) {
+    if (snakeLocation[snakeLocation.length - 1] < 0 || snakeLocation[snakeLocation.length - 2] < 0) {
         death = true
     }
     
@@ -103,7 +119,7 @@ while (true) {
     food()
     lengthfunc = snakeLocation.length
     snakeLocation = moveSnake(snakeLocation, direction, length)
-    if (checkDeath(snakeLocation, lengthfunc)) {
+    if (checkDeath(snakeLocation)) {
         direction = 0
         //  cooper
         length = 1

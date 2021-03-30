@@ -34,6 +34,7 @@ let snakeLocation = [0, 0]
 let rand1 = 0
 let rand2 = 0
 let dead = true
+let firstPass = true
 function drawSnake(snakeLocation: number[]) {
     
     //  clear the screen before drawing
@@ -116,34 +117,47 @@ function checkDeath(snakeLocation: number[]): boolean {
 }
 
 while (true) {
-    food(snakeLocation)
-    snakeLocation = moveSnake(snakeLocation, direction, length)
-    if (checkDeath(snakeLocation)) {
-        direction = 0
-        //  cooper
-        length = 1
-        rand1 = 0
-        rand2 = 0
-        snakeLocation = [0, 0]
-        dead = true
-    }
-    
-    drawSnake(snakeLocation)
-    for (let x2 = 0; x2 < 200; x2++) {
-        if (ppFlag == false) {
-            if (input.buttonIsPressed(Button.A)) {
-                on_button_pressed_a()
-                ppFlag = true
-            }
-            
-            if (input.buttonIsPressed(Button.B)) {
-                on_button_pressed_b()
-                ppFlag = true
-            }
-            
+    if (!dead) {
+        food(snakeLocation)
+        snakeLocation = moveSnake(snakeLocation, direction, length)
+        if (checkDeath(snakeLocation)) {
+            direction = 0
+            //  cooper
+            length = 1
+            rand1 = 0
+            rand2 = 0
+            snakeLocation = [0, 0]
+            dead = true
+            scrollbit.scrollText("GAME OVER", 100, 10)
         }
         
-        basic.pause(1)
+        drawSnake(snakeLocation)
+        for (let x2 = 0; x2 < 200; x2++) {
+            if (ppFlag == false) {
+                if (input.buttonIsPressed(Button.A)) {
+                    on_button_pressed_a()
+                    ppFlag = true
+                }
+                
+                if (input.buttonIsPressed(Button.B)) {
+                    on_button_pressed_b()
+                    ppFlag = true
+                }
+                
+            }
+            
+            basic.pause(1)
+        }
+        ppFlag = false
+    } else {
+        if (firstPass) {
+            scrollbit.scrollText("MicroSnake", 100, 50)
+            scrollbit.show()
+            scrollbit.scrollText("Alex Frutkin and Cooper Weissman", 100, 20)
+            scrollbit.show()
+        }
+        
+        dead = false
     }
-    ppFlag = false
+    
 }

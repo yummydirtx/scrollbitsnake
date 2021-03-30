@@ -26,6 +26,7 @@ snakeLocation = [0, 0]
 rand1=0
 rand2=0
 dead = True
+firstPass = True
 def drawSnake(snakeLocation: List[number]):
     global rand1, rand2
     # clear the screen before drawing
@@ -84,24 +85,33 @@ def checkDeath(snakeLocation: List[number]):
     return death
 
 while True:
-    food(snakeLocation)
-    snakeLocation = moveSnake(snakeLocation, direction, length)
-    if checkDeath(snakeLocation):
-        direction = 0
-        # cooper
-        length = 1
-        rand1=0
-        rand2=0
-        snakeLocation = [0, 0]
-        dead = True
-    drawSnake(snakeLocation)
-    for x2 in range(200):
-        if ppFlag == False:
-            if input.button_is_pressed(Button.A):
-                on_button_pressed_a()
-                ppFlag = True
-            if input.button_is_pressed(Button.B):
-                on_button_pressed_b()
-                ppFlag = True
-        basic.pause(1)
-    ppFlag = False
+    if not dead:
+        food(snakeLocation)
+        snakeLocation = moveSnake(snakeLocation, direction, length)
+        if checkDeath(snakeLocation):
+            direction = 0
+            # cooper
+            length = 1
+            rand1=0
+            rand2=0
+            snakeLocation = [0, 0]
+            dead = True
+            scrollbit.scroll_text("GAME OVER",100,10)
+        drawSnake(snakeLocation)
+        for x2 in range(200):
+            if ppFlag == False:
+                if input.button_is_pressed(Button.A):
+                    on_button_pressed_a()
+                    ppFlag = True
+                if input.button_is_pressed(Button.B):
+                    on_button_pressed_b()
+                    ppFlag = True
+            basic.pause(1)
+        ppFlag = False
+    else:
+        if firstPass:
+            scrollbit.scroll_text("MicroSnake", 100,50)
+            scrollbit.show()
+            scrollbit.scroll_text("Alex Frutkin and Cooper Weissman",100, 20)
+            scrollbit.show()
+        dead = False

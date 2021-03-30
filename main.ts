@@ -1,4 +1,3 @@
-let lengthfunc: number;
 function on_button_pressed_a() {
     
     if (direction == 0) {
@@ -72,11 +71,11 @@ function moveSnake(snakeLocation: number[], direction: number, length: number): 
     return snakeLocation
 }
 
-function food() {
+function food(snakeLocation: number[]) {
     
     
     
-    if (snakeLocation[lengthfunc - 2] == rand2 && snakeLocation[lengthfunc - 1] == rand1) {
+    if (snakeLocation[snakeLocation.length - 2] == rand2 && snakeLocation[snakeLocation.length - 1] == rand1) {
         length = length + 1
         rand1 = randint(0, 6)
         rand2 = randint(0, 16)
@@ -116,8 +115,7 @@ function checkDeath(snakeLocation: number[]): boolean {
 }
 
 while (true) {
-    food()
-    lengthfunc = snakeLocation.length
+    food(snakeLocation)
     snakeLocation = moveSnake(snakeLocation, direction, length)
     if (checkDeath(snakeLocation)) {
         direction = 0

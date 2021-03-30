@@ -55,11 +55,11 @@ def moveSnake(snakeLocation: List[number], direction: number, length: number):
         # remove extra snake
         snakeLocation = snakeLocation.slice(2)
     return snakeLocation
-def food():
+def food(snakeLocation: List[number]):
     global length
     global rand1
     global rand2
-    if snakeLocation[lengthfunc - 2] == rand2 and snakeLocation[lengthfunc - 1] == rand1:
+    if snakeLocation[len(snakeLocation) - 2] == rand2 and snakeLocation[len(snakeLocation) - 1] == rand1:
         length= length + 1
         rand1 = randint(0,6)
         rand2 = randint(0,16)
@@ -83,8 +83,7 @@ def checkDeath(snakeLocation: List[number]):
     return death
 
 while True:
-    food()
-    lengthfunc = len(snakeLocation)
+    food(snakeLocation)
     snakeLocation = moveSnake(snakeLocation, direction, length)
     if checkDeath(snakeLocation):
         direction = 0

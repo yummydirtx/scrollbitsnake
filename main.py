@@ -25,6 +25,7 @@ length = 1
 snakeLocation = [0, 0]
 rand1=0
 rand2=0
+dead = True
 def drawSnake(snakeLocation: List[number]):
     global rand1, rand2
     # clear the screen before drawing
@@ -92,6 +93,7 @@ while True:
         rand1=0
         rand2=0
         snakeLocation = [0, 0]
+        dead = True
     drawSnake(snakeLocation)
     for x2 in range(200):
         if ppFlag == False:

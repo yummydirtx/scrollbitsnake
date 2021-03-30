@@ -33,6 +33,7 @@ let length = 1
 let snakeLocation = [0, 0]
 let rand1 = 0
 let rand2 = 0
+let dead = true
 function drawSnake(snakeLocation: number[]) {
     
     //  clear the screen before drawing
@@ -124,6 +125,7 @@ while (true) {
         rand1 = 0
         rand2 = 0
         snakeLocation = [0, 0]
+        dead = true
     }
     
     drawSnake(snakeLocation)

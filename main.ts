@@ -130,13 +130,4 @@ while (true) {
         basic.pause(1)
     }
     ppFlag = false
-    if (checkDeath(snakeLocation, lengthfunc)) {
-        direction = 0
-        //  cooper
-        length = 1
-        rand1 = 0
-        rand2 = 0
-        snakeLocation = [0, 0]
-    }
-    
 }

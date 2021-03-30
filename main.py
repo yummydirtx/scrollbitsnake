@@ -60,10 +60,20 @@ def moveSnake(snakeLocation: List[number], direction: number, length: number):
     return snakeLocation
 def food(snakeLocation: List[number]):
     global length, rand1, rand2
-    if snakeLocation[len(snakeLocation) - 2] == rand2 and snakeLocation[len(snakeLocation) - 1] == rand1:
-        length = length + 1
-        rand1 = randint(0, 6)
-        rand2 = randint(0, 16)
+    overlap=False
+    while not overlap:
+        if snakeLocation[len(snakeLocation) - 2] == rand2 and snakeLocation[len(snakeLocation) - 1] == rand1:
+            length = length + 1
+            rand1 = randint(0, 6)
+            rand2 = randint(0, 16)
+        for x in range((len(snakeLocation) / 2)):
+            if rand2 == snakeLocation[x*2]:
+                if rand1 == snakeLocation[(x*2)+1]:
+                    rand1 = randint(0,6)
+                    rand2 = randint(0,16)
+                    overlap = True
+            else:
+                overlap = False
     return length
 drawSnake(snakeLocation)
 def checkContact(snakeLocation: List[number]):

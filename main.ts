@@ -73,32 +73,6 @@ function moveSnake(snakeLocation: number[], direction: number, length: number): 
     return snakeLocation
 }
 
-function food(snakeLocation: number[]) {
-    
-    let overlap = false
-    while (!overlap) {
-        if (snakeLocation[snakeLocation.length - 2] == rand2 && snakeLocation[snakeLocation.length - 1] == rand1) {
-            length = length + 1
-            rand1 = randint(0, 6)
-            rand2 = randint(0, 16)
-        }
-        
-        for (let x = 0; x < snakeLocation.length / 2; x++) {
-            if (rand2 == snakeLocation[x * 2]) {
-                if (rand1 == snakeLocation[x * 2 + 1]) {
-                    rand1 = randint(0, 6)
-                    rand2 = randint(0, 16)
-                    overlap = true
-                }
-                
-            } else {
-                overlap = false
-            }
-            
-        }
-    }
-    return length
-}
 
 drawSnake(snakeLocation)
 function checkContact(snakeLocation: number[]): boolean {

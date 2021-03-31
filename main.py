@@ -74,6 +74,8 @@ def food(snakeLocation: List[number]):
                     overlap = True
             else:
                 overlap = False
+        else:
+            overlap = False
     return length
 drawSnake(snakeLocation)
 def checkContact(snakeLocation: List[number]):

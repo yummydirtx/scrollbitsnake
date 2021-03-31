@@ -130,4 +130,4 @@ while True:
             if input.button_is_pressed(Button.A) or input.button_is_pressed(Button.B):
                 dead = False
                 pp = 1000
-            basic.pause(1)
+            basic.pause(100)

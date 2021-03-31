@@ -153,7 +153,7 @@ while (true) {
                 pp = 1000
             }
             
-            basic.pause(1)
+            basic.pause(100)
         }
     }
     

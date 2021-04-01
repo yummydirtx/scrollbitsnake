@@ -28,9 +28,9 @@ function on_button_pressed_b() {
 }
 
 let ppFlag = false
-let rand2 = 0
-let rand1 = 0
 let direction = 0
+let rand1 = 0
+let rand2 = 0
 //  cooper
 let length = 1
 let snakeLocation = [0, 0]
@@ -83,9 +83,9 @@ function food(snakeLocation: number[]) {
             rand2 = randint(0, 16)
         }
         
-        for (let x = 0; x < snakeLocation.length / 2; x++) {
-            if (rand2 == snakeLocation[x * 2]) {
-                if (rand1 == snakeLocation[x * 2 + 1]) {
+        for (let x2 = 0; x2 < snakeLocation.length / 2; x2++) {
+            if (rand2 == snakeLocation[x2 * 2]) {
+                if (rand1 == snakeLocation[x2 * 2 + 1]) {
                     rand1 = randint(0, 6)
                     rand2 = randint(0, 16)
                     overlap = true
@@ -107,9 +107,9 @@ function checkContact(snakeLocation: number[]): boolean {
     let contact = false
     let frontX = snakeLocation[snakeLocation.length - 2]
     let frontY = snakeLocation[snakeLocation.length - 1]
-    for (let x2 = 0; x2 < snakeLocation.length / 2 - 1; x2++) {
-        if (frontX == snakeLocation[x2 * 2]) {
-            if (frontY == snakeLocation[x2 * 2 + 1]) {
+    for (let x22 = 0; x22 < snakeLocation.length / 2 - 1; x22++) {
+        if (frontX == snakeLocation[x22 * 2]) {
+            if (frontY == snakeLocation[x22 * 2 + 1]) {
                 contact = true
             }
             
@@ -137,6 +137,7 @@ while (true) {
         food(snakeLocation)
         snakeLocation = moveSnake(snakeLocation, direction, length)
         if (checkDeath(snakeLocation)) {
+            soundExpression.sad.play()
             direction = 0
             //  cooper
             length = 1
@@ -175,13 +176,15 @@ while (true) {
         }
         
         scrollbit.scrollText("PRESS ANY BUTTON", 100, 20)
-        for (pp = 0; pp < 1000; pp++) {
+        pp = 0
+        while (pp < 1000) {
             if (input.buttonIsPressed(Button.A) || input.buttonIsPressed(Button.B)) {
                 dead = false
                 pp = 1000
             }
             
             basic.pause(100)
+            pp += 1
         }
     }
     

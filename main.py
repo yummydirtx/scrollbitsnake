@@ -72,10 +72,10 @@ def food(snakeLocation: List[number]):
                     rand1 = randint(0,6)
                     rand2 = randint(0,16)
                     overlap = True
+                else:
+                    overlap = True
             else:
-                overlap = False
-        else:
-            overlap = False
+                overlap = True
     return length
 drawSnake(snakeLocation)
 def checkContact(snakeLocation: List[number]):

@@ -66,6 +66,8 @@ def food(snakeLocation: List[number]):
             length = length + 1
             rand1 = randint(0, 6)
             rand2 = randint(0, 16)
+        else:
+            overlap = False
         for x in range((len(snakeLocation) / 2)):
             if rand2 == snakeLocation[x*2]:
                 if rand1 == snakeLocation[(x*2)+1]:
@@ -74,8 +76,6 @@ def food(snakeLocation: List[number]):
                     overlap = True
             else:
                 overlap = False
-        else:
-            overlap = False
     return length
 drawSnake(snakeLocation)
 def checkContact(snakeLocation: List[number]):

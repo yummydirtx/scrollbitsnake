@@ -27,7 +27,7 @@ length = 1
 snakeLocation = [0, 0]
 dead = True
 firstPass = True
-debounce = 51
+debounce = 0
 def drawSnake(snakeLocation: List[number]):
     # clear the screen before drawing
     scrollbit.clear()

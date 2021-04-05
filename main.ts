@@ -36,7 +36,7 @@ let length = 1
 let snakeLocation = [0, 0]
 let dead = true
 let firstPass = true
-let debounce = 51
+let debounce = 0
 function drawSnake(snakeLocation: number[]) {
     //  clear the screen before drawing
     scrollbit.clear()

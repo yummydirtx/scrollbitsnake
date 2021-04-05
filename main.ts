@@ -1,6 +1,4 @@
-let pp: number;
-function on_button_pressed_a() {
-    
+function on_button_pressed_a () {
     if (direction == 0) {
         direction = 3
     } else if (direction == 1) {
@@ -10,11 +8,8 @@ function on_button_pressed_a() {
     } else if (direction == 3) {
         direction = 2
     }
-    
 }
-
-function on_button_pressed_b() {
-    
+function on_button_pressed_b () {
     if (direction == 0) {
         direction = 1
     } else if (direction == 1) {
@@ -24,19 +19,18 @@ function on_button_pressed_b() {
     } else if (direction == 3) {
         direction = 0
     }
-    
 }
-
 let ppFlag = false
-let direction = 0
-let rand1 = 0
+let debounce = 0
 let rand2 = 0
-//  cooper
+let rand1 = 0
+let direction = 0
+let pp: number;
+// cooper
 let length = 1
 let snakeLocation = [0, 0]
 let dead = true
 let firstPass = true
-let debounce = 0
 function drawSnake(snakeLocation: number[]) {
     //  clear the screen before drawing
     scrollbit.clear()
@@ -50,7 +44,6 @@ function drawSnake(snakeLocation: number[]) {
     //  show the world
     scrollbit.show()
 }
-
 function moveSnake(snakeLocation: number[], direction: number, length: number): number[] {
     //  if going to the right
     if (direction == 0) {
@@ -73,7 +66,6 @@ function moveSnake(snakeLocation: number[], direction: number, length: number): 
     }
     return snakeLocation
 }
-
 function food(snakeLocation: number[]) {
     
     let overlap = false
@@ -102,7 +94,6 @@ function food(snakeLocation: number[]) {
     }
     return length
 }
-
 function checkContact(snakeLocation: number[]): boolean {
     let contact = false
     let frontX = snakeLocation[snakeLocation.length - 2]
@@ -118,7 +109,6 @@ function checkContact(snakeLocation: number[]): boolean {
     }
     return contact
 }
-
 function checkDeath(snakeLocation: number[]): boolean {
     let death = checkContact(snakeLocation)
     if (snakeLocation[snakeLocation.length - 1] > 6 || snakeLocation[snakeLocation.length - 2] > 16) {
@@ -131,15 +121,14 @@ function checkDeath(snakeLocation: number[]): boolean {
     
     return death
 }
-
 while (true) {
-    if (!dead) {
+    if (!(dead)) {
         food(snakeLocation)
-        snakeLocation = moveSnake(snakeLocation, direction, length)
-        if (checkDeath(snakeLocation)) {
+snakeLocation = moveSnake(snakeLocation, direction, length)
+if (checkDeath(snakeLocation)) {
             soundExpression.sad.play()
             direction = 0
-            //  cooper
+            // cooper
             length = 1
             rand1 = 0
             rand2 = 0
@@ -147,10 +136,9 @@ while (true) {
             dead = true
             scrollbit.scrollText("GAME OVER", 100, 10)
         }
-        
-        if (!dead) {
+        if (!(dead)) {
             drawSnake(snakeLocation)
-            for (let index = 0; index < 200; index++) {
+for (let index = 0; index < 200; index++) {
                 if (debounce > 50) {
                     if (ppFlag == false) {
                         if (input.buttonIsPressed(Button.A)) {
@@ -158,23 +146,18 @@ while (true) {
                             ppFlag = true
                             debounce = 0
                         }
-                        
                         if (input.buttonIsPressed(Button.B)) {
                             on_button_pressed_b()
                             ppFlag = true
                             debounce = 0
                         }
-                        
                     }
-                    
                 }
-                
                 basic.pause(1)
                 debounce += 1
             }
             ppFlag = false
         }
-        
     } else {
         if (firstPass) {
             scrollbit.scrollText("MicroSnake", 100, 50)
@@ -183,7 +166,6 @@ while (true) {
             scrollbit.show()
             firstPass = false
         }
-        
         scrollbit.scrollText("PRESS ANY BUTTON", 100, 20)
         pp = 0
         while (pp < 1000) {
@@ -191,10 +173,8 @@ while (true) {
                 dead = false
                 pp = 1000
             }
-            
             basic.pause(100)
             pp += 1
         }
     }
-    
 }

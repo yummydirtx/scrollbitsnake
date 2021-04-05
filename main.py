@@ -27,6 +27,7 @@ length = 1
 snakeLocation = [0, 0]
 dead = True
 firstPass = True
+debounce = 51
 def drawSnake(snakeLocation: List[number]):
     # clear the screen before drawing
     scrollbit.clear()
@@ -76,7 +77,6 @@ def food(snakeLocation: List[number]):
             else:
                 overlap = True
     return length
-drawSnake(snakeLocation)
 def checkContact(snakeLocation: List[number]):
     contact = False
     frontX = snakeLocation[len(snakeLocation) - 2]
@@ -107,17 +107,22 @@ while True:
             snakeLocation = [0, 0]
             dead = True
             scrollbit.scroll_text("GAME OVER", 100, 10)
-        drawSnake(snakeLocation)
-        for index in range(200):
-            if ppFlag == False:
-                if input.button_is_pressed(Button.A):
-                    on_button_pressed_a()
-                    ppFlag = True
-                if input.button_is_pressed(Button.B):
-                    on_button_pressed_b()
-                    ppFlag = True
-            basic.pause(1)
-        ppFlag = False
+        if not dead:
+            drawSnake(snakeLocation)
+            for index in range(200):
+                if debounce > 50:
+                    if ppFlag == False:
+                        if input.button_is_pressed(Button.A):
+                            on_button_pressed_a()
+                            ppFlag = True
+                            debounce = 0
+                        if input.button_is_pressed(Button.B):
+                            on_button_pressed_b()
+                            ppFlag = True
+                            debounce = 0
+                basic.pause(1)
+                debounce += 1
+            ppFlag = False
     else:
         if firstPass:
             scrollbit.scroll_text("MicroSnake", 100, 50)

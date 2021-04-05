@@ -36,6 +36,7 @@ let length = 1
 let snakeLocation = [0, 0]
 let dead = true
 let firstPass = true
+let debounce = 51
 function drawSnake(snakeLocation: number[]) {
     //  clear the screen before drawing
     scrollbit.clear()
@@ -102,7 +103,6 @@ function food(snakeLocation: number[]) {
     return length
 }
 
-drawSnake(snakeLocation)
 function checkContact(snakeLocation: number[]): boolean {
     let contact = false
     let frontX = snakeLocation[snakeLocation.length - 2]
@@ -148,24 +148,33 @@ while (true) {
             scrollbit.scrollText("GAME OVER", 100, 10)
         }
         
-        drawSnake(snakeLocation)
-        for (let index = 0; index < 200; index++) {
-            if (ppFlag == false) {
-                if (input.buttonIsPressed(Button.A)) {
-                    on_button_pressed_a()
-                    ppFlag = true
+        if (!dead) {
+            drawSnake(snakeLocation)
+            for (let index = 0; index < 200; index++) {
+                if (debounce > 50) {
+                    if (ppFlag == false) {
+                        if (input.buttonIsPressed(Button.A)) {
+                            on_button_pressed_a()
+                            ppFlag = true
+                            debounce = 0
+                        }
+                        
+                        if (input.buttonIsPressed(Button.B)) {
+                            on_button_pressed_b()
+                            ppFlag = true
+                            debounce = 0
+                        }
+                        
+                    }
+                    
                 }
                 
-                if (input.buttonIsPressed(Button.B)) {
-                    on_button_pressed_b()
-                    ppFlag = true
-                }
-                
+                basic.pause(1)
+                debounce += 1
             }
-            
-            basic.pause(1)
+            ppFlag = false
         }
-        ppFlag = false
+        
     } else {
         if (firstPass) {
             scrollbit.scrollText("MicroSnake", 100, 50)
